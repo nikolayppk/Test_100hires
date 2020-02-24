@@ -6,16 +6,16 @@ import org.openqa.selenium.support.PageFactory;
 import java.util.concurrent.TimeUnit;
 
 public class MainClass {
-    static WebDriver driver;
-
+    protected WebDriver driver;
 
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "/Users/Mac/Desktop/Test_100hires/drivers/chromedriver");
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().window().fullscreen();
-        StartPage startPage = PageFactory.initElements(driver, StartPage.class);
-
+    }
+    public void tearDown(){
+        driver.quit();
     }
 }
 

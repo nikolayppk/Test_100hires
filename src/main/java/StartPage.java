@@ -1,12 +1,18 @@
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import sun.security.krb5.internal.PAData;
 
-public class StartPage {
-    private WebDriver driver;
+
+public class StartPage extends MainClass{
     public StartPage(WebDriver driver) {
         this.driver = driver;
     }
+
+    By  logIn = (By.xpath("//a[@class='header__top__login']"));
+
+
         @FindBy(xpath = "//a[@class='header__top__login']")
         private WebElement loginIn;
 
@@ -29,6 +35,10 @@ public class StartPage {
         public StartPage setEmail(String email){
             inputEmail.sendKeys(email);
             return this;
+        }
+        public PageLogin ClickButtonLog(){
+            driver.findElement(logIn).click();
+            return new PageLogin(driver);
         }
  }
 

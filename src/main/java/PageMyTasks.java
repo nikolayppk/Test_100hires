@@ -1,6 +1,6 @@
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 
 public class PageMyTasks {
     private WebDriver driver;
@@ -9,23 +9,20 @@ public class PageMyTasks {
         this.driver = driver;
     }
 
-    @FindBy(xpath = "//*[@class='header-search__input']")
-    public WebElement linkJobs;
-
-    @FindBy(xpath = "//a[@class='btn btn-lg btn-primary btn-wide']")
-    private WebElement buttonAdd;
-
+    private By linkJobs = By.xpath( "//a[@href = '/jobs']");
 
 
     /////////////////////////     Методы     ///////////////////////
 
-    public PageMyTasks clickLinkJobs() {
-        linkJobs.click();
-        return new PageMyTasks(driver);
-    }
-    public PageJobCreate clickButtonAdd() {
-        buttonAdd.click();
-        return new PageJobCreate(driver);
+    public PageJobs clickLinkJobs() {
+        try {
+            WebElement button = driver.findElement(linkJobs);
+            button.click();
+        } catch (org.openqa.selenium.StaleElementReferenceException ex) {
+            WebElement button = driver.findElement(linkJobs);
+            button.click();
+        }
+        return new PageJobs(driver);
     }
 
 }

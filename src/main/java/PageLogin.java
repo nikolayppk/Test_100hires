@@ -1,54 +1,39 @@
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-
 public class PageLogin {
 
     private WebDriver driver;
 
-    public PageLogin(WebDriver driver) {
+    public PageLogin(WebDriver driver) { this.driver = driver; }
 
-        this.driver = driver;
-    }
-
-    @FindBy(id = "loginform-email")
-    private WebElement inputEmail;
-
-    @FindBy(id = "loginform-password")
-    private WebElement inputPassword;
-
-    @FindBy(xpath = "//a[@class='login-form__link']")
-    private WebElement buttonForgetPassword;
-
-    @FindBy(xpath = "//a[@class='login-form__link login-form__link_signup']")
-    private WebElement buttonRegistration;
-
-    @FindBy(xpath = "//button[@class='btn btn-auth']")
-    private WebElement buttonSignIn;
-
-
+    private By inputEmail = (By.id("loginform-email"));
+    private By inputPassword = (By.id("loginform-password"));
+    private By buttonForgetPassword = (By.xpath("//a[@class='login-form__link']"));
+    private By buttonRegistration = (By.xpath("//a[@class='login-form__link login-form__link_signup']"));
+    private By buttonSignIn = (By.xpath("//button[@class='btn btn-auth']"));
 
     /////////////////////////     Методы     ///////////////////////
     public PageLogin setPassword(String password) {
-        inputPassword.sendKeys(password);
+        driver.findElement(inputPassword).sendKeys(password);
         return this;
     }
     public PageLogin setEmail(String email) {
-        inputEmail.sendKeys(email);
+        driver.findElement(inputEmail).sendKeys(email);
         return this;
     }
     public PagePasswordReset clickForgetPassword() {
-        buttonForgetPassword.click();
+        driver.findElement(buttonForgetPassword).click();
         return new PagePasswordReset(driver);
     }
     public PageSignUp clickButtonRegistration() {
-        buttonRegistration.click();
+        driver.findElement(buttonRegistration).click();
         return new PageSignUp(driver);
     }
-    public void autorization(String email, String password) {
+    public PageMyTasks autorization(String email, String password) {
         setEmail(email);
         setPassword(password);
-        buttonSignIn.click();
+        driver.findElement(buttonSignIn).click();
+        return new PageMyTasks(driver);
     }
 }
 
