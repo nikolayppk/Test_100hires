@@ -10,12 +10,8 @@ public class PageApplicantForm {
         this.driver = driver;
     }
 
-    @FindBy(xpath = "//a[@class='btn btn-default btn-lg btn-wide applicant-form__btn_details']")
-    private WebElement buttonBack;
-
-    @FindBy(xpath = "//a[@class='btn btn-primary btn-lg btn-wide']")
-    private WebElement buttonNext;
-
+    private By buttonBack = By.xpath("//a[@class='btn btn-default btn-lg btn-wide applicant-form__btn_details']");
+    private By buttonNext = By.xpath("//a[@class='btn btn-primary btn-lg btn-wide']");
     private By headerName = By.xpath("//h1[@class = 'job-header-name']");
 
     //Возвращаем текст Job

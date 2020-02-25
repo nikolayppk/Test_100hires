@@ -9,9 +9,16 @@ public class PageSignUp {
         this.driver = driver;
     }
 
-    By inputEmail = By.id("emailform-email");
+    private By inputEmail = By.id("emailform-email");
+    private By buttonNext = By.xpath("//*[@class='btn btn-primary btn-lg btn-wide']");
 
-    By buttonNext = By.xpath("//*[@class='btn btn-primary btn-lg btn-wide']");
-
+    public PageSignUp setEmail(String email) {
+        driver.findElement(inputEmail).sendKeys(email);
+        return this;
+    }
+    public PageRegister butoonNextClick() {
+        driver.findElement(buttonNext).click();
+        return new PageRegister(driver);
+    }
 }
 
